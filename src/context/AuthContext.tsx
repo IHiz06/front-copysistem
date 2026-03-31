@@ -85,7 +85,7 @@ export function useApi() {
   const { user } = useAuth();
   const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-  return useCallback(async <T>(path: string, init: RequestInit = {}): Promise<T> => {
+  return useCallback(async <T,>(path: string, init: RequestInit = {}): Promise<T> => {
     const headers: Record<string,string> = {
       ...(!(init.body instanceof FormData) ? { "Content-Type": "application/json" } : {}),
       ...(user?.token ? { "X-Session-Token": user.token } : {}),
